@@ -1,0 +1,27 @@
+<%- include('../partials/header'); -%>
+
+  <body>
+    <%- include('../partials/mainnav'); -%>
+    <main>
+      <section class="roomHolder">
+          <% data.forEach(function(room){ %>
+        <div class="room borderSolid hoverShadow inlineFlex transition">
+          <div class="climateImage backgroundImage">
+            <img src="" alt="">
+          </div>
+          <div class="dataHolder flex">
+            <% button.forEach(function(button){ %>
+            <div class="dataIcon borderSolid inlineFlex hoverShadow borderRadius transition">
+              <p><%= button.voc %></p>
+            </div>
+            <% }) %>
+
+          </div>
+        </div>
+<% }) %>
+      </section>
+
+    </main>
+  </body>
+
+<%- include('../partials/footer'); -%>

@@ -1,0 +1,31 @@
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.inlineFlex {
+  display: inline-flex;
+}
+.fadeOut{
+  opacity: 0
+}
+.borderRadius {
+  border-radius: 5px;
+}
+.hoverShadow:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.transition {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.backgroundImage{
+  background-color: gray;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.borderSolid{
+  border: 1px solid black;
+
+}

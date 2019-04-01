@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "raleway", Arial, sans-serif;
+}
+
+body {
+  margin: 0px;
+  color: black;
+  background-color: #e2e1e0;
+  font-family: "raleway", Arial, sans-serif;
+  font-style: normal;
+}
+
+.roomHolder{
+  width: 95%;
+  max-width: 600px;
+  height: auto;
+  min-height: 200px;
+  background-color: none;
+  margin: 0 auto;
+
+}
+.room{
+  width: calc(100% - 20px);
+  /* padding: 10px; */
+  margin: 10px auto;
+  background-color: white;
+
+}
+.climateImage{
+  width: 40%;
+  height: 200px;
+  background-color: lightgray;
+  background-image: url("../img/climate/desert-1.svg");
+  border-right: black solid 1px;
+
+}
+.dataHolder{
+  width: 60%;
+  height: 200px;
+  margin: 0 0 0 10px;
+  background-color: white;
+  overflow: scroll;
+}
+.dataIcon{
+  /* width and padding need to be same to it can be a quare */
+  width:calc(33% - 15px);
+  margin: 7px;
+  background-color: #f6f6f6;
+}
