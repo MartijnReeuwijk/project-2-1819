@@ -9,41 +9,295 @@ body {
   font-family: "raleway", Arial, sans-serif;
   font-style: normal;
 }
-
-.roomHolder{
-  width: 95%;
-  max-width: 600px;
-  height: auto;
-  min-height: 200px;
-  background-color: none;
-  margin: 0 auto;
-
-}
-.room{
-  width: calc(100% - 20px);
-  /* padding: 10px; */
-  margin: 10px auto;
+.filterHolder{
+  width: 100%;
+  /* border-radius: 20px; */
   background-color: white;
+  max-width: 750px;
+  margin: 10px auto;
+  border: 1px solid black
+}
+.filterHolder h1{
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 25px;
+}
+.filterForm{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
 }
-.climateImage{
+.filterForm form{
+  display: inline-flex;
+}
+.filterForm label{
+margin: 5px;
+padding: 5px;
+}
+.roomHolder {
+  width: 95%;
+  min-height: 200px;
+  margin: 0 auto;
+  background-color: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.room {
+  overflow: hidden;
+  width: calc(50% - 20px);
+  max-width: 500px;
+  display: inline-flex;
+  margin: 10px 5px;
+  background-color: white;
+  position: relative;
+  opacity: 1;
+  animation: fadeIn .5s ease-in both;
+
+}
+.dataTitlePusher{
+  height: 25px;
+  width: 100%;
+
+}
+.dataTitle{
+  position: absolute;
+  width: 100%;
+  background: white;
+  height: 25px;
+  border-bottom: 1px solid black;
+}
+.dataTitle h2 {
+  width: calc(80% - 10px);
+  margin: 0 0 0 10px;
+  line-height: 25px;
+  float: left;
+}
+.dataTitle time {
+  width: 20%;
+  line-height: 25px;
+  text-align: center;
+  float: left;
+}
+.climateImage {
   width: 40%;
   height: 200px;
-  background-color: lightgray;
-  background-image: url("../img/climate/desert-1.svg");
   border-right: black solid 1px;
-
+  background-color: lightgray;
+  overflow: hidden;
+  background-image: url("../img/climate/home.svg");
 }
-.dataHolder{
+.climateImage img {
+  height: 100%;
+}
+
+.dataHolder {
+  overflow: scroll;
   width: 60%;
   height: 200px;
-  margin: 0 0 0 10px;
   background-color: white;
-  overflow: scroll;
 }
-.dataIcon{
+
+.dataIcon {
   /* width and padding need to be same to it can be a quare */
-  width:calc(33% - 15px);
+  width: calc(33% - 15px);
   margin: 7px;
   background-color: #f6f6f6;
 }
+.dataIcon p {visibility: hidden;}
+.dataHolder p {
+
+display: inline-flex;
+}
+.textHolder{
+  padding: 10px 20px;
+}
+.textHolder p {
+width: 100%;
+margin: 0px;
+}
+.textHolder p span{
+  margin: 0 5px;
+}
+.sound{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  border: 1px solid black;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: white;
+  background-color: rgba(255,77,77, 0.1);
+  background-size: 90%;
+  background-image: url("../img/measurement/speaker.svg");
+  animation: pulse 3s infinite;
+}
+.invis{
+  display: none;
+}
+
+
+
+
+
+/* Icons */
+/*  Dit kan dynamies van de site  */
+.bapLevel {
+  background-image: url("../img/measurement/bap.svg");
+}
+
+.temperature {
+  background-image: url("../img/measurement/temperature.svg");
+}
+
+.batt {
+  background-image: url("../img/measurement/batt.svg");
+}
+
+.mic_level {
+  background-image: url("../img/measurement/mic_level.svg");
+}
+
+.ambient_light {
+  background-image: url("../img/measurement/ambient_light.svg");
+}
+
+.humidity {
+  background-image: url("../img/measurement/humidity.svg");
+}
+
+.co2 {
+  background-image: url("../img/measurement/co2.svg");
+}
+
+.occupancy {
+  background-image: url("../img/measurement/occupancy.svg");
+}
+
+.uv_index {
+  background-image: url("../img/measurement/uv_index.svg");
+}
+
+.voc {
+  background-image: url("../img/measurement/voc.svg");
+}
+
+/* animations */
+
+.room:nth-of-type(2) {
+	animation-delay: .25s;
+}
+.room:nth-of-type(3) {
+	animation-delay: .5s;
+}
+.room:nth-of-type(4) {
+	animation-delay: .75s;
+}
+.room:nth-of-type(5) {
+	animation-delay: 1s;
+}
+.room:nth-of-type(6) {
+	animation-delay: 1.25s;
+}
+.room:nth-of-type(7) {
+	animation-delay: 1.5s;
+}
+.room:nth-of-type(8) {
+	animation-delay: 1.75s;
+}
+.room:nth-of-type(9) {
+	animation-delay: 2s;
+}
+.room:nth-of-type(10) {
+	animation-delay: 2.25s;
+}
+.room:nth-of-type(11) {
+	animation-delay: 2.5s;
+}
+.room:nth-of-type(12) {
+	animation-delay: 2.75s;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -20%, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,77,77, 0.4);
+  }
+  70% {
+      box-shadow: 0 0 0 10px rgba(255,77,77, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(255,77,77, 0);
+  }
+}
+
+.free{
+  color: #3af947;
+}
+.occupied{
+  color: #f9473a;
+
+}
+.koud{
+  color: #0080ff;
+  animation: shake 1s ease-in 5;
+}
+.koud:hover{
+  animation: shake .5s ease-in infinite;
+}
+.warm{
+  color: #ff7f00;
+}
+.vrij{
+  transform: translate3d(0, 0, 0);
+}
+.bezet{
+  opacity: .5;
+   filter: grayscale(75%);
+}
+.bezet:hover{
+  opacity: 1;
+   filter: grayscale(0%);
+}
+.luid{
+
+}
+/* .rustig:after{
+  content: '_';
+  background-image: url("../img/measurement/speaker.svg");
+} */

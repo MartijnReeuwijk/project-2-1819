@@ -14,7 +14,7 @@
   border-radius: 5px;
 }
 .hoverShadow:hover {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.24), 0 3px 5px rgba(0, 0, 0, 0.34);
 }
 .transition {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -27,5 +27,12 @@
 }
 .borderSolid{
   border: 1px solid black;
-
 }
+.backgroundImageContain{
+    background-size: contain;
+}
+.bad{
+  color: #f9473a;
+}
+
+  /* <p> <% console.log(data[0].measurements.bapLevel) %> </p> */

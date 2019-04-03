@@ -34,6 +34,7 @@ app.use(
 app.use(compression());
 app.set("view engine", "ejs");
 app.use(express.static("static"));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 app.get('/', (req, res) => {
   request(
@@ -41,17 +42,14 @@ app.get('/', (req, res) => {
     (error, response, body) => {
       const json = JSON.parse(body);
       const data = json.data;
-      const buttons = [];
-      Object.entries(data[0].measurements).map(function(key) {
-        buttons.push(key);
-        });
-
+      const time = getTime()
+      const filteredData = filterData(data)
 
       if (response) {
         res.render("pages/index", {
           title: "SADS",
-          data: data,
-          button: buttons
+          data: filteredData,
+          time: time
         });
       } else {
         res.send(`<p>De server of API waar mijn data wordt verwerkt ligt er uit, check uw internet</p>`);
@@ -60,12 +58,44 @@ app.get('/', (req, res) => {
   );
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+ function filterData(data) {
+  return filteredData = data.sort((x, y) => {
+        return (x.measurements.occupancy === y.measurements.occupancy)? 0 : x.measurements.occupancy? -1 : 1;
+    });
+ }
+
+
+
+
+function getTime() {
+  const time = new Date()
+  const hours = time.getHours();
+  const mins = time.getMinutes();
+  return hours + ":" + mins
+}
+
+
+
+function perc2color(perc) {
+  var r, g, b = 0;
+  if (perc < 50) {
+    r = 255;
+    g = Math.round(5.1 * perc);
+  } else {
+    g = 255;
+    r = Math.round(510 - 5.10 * perc);
+  }
+  var h = r * 0x10000 + g * 0x100 + b * 0x1;
+  // console.log('#' + ('000000' + h.toString(16)).slice(-6));
+  return '#' + ('000000' + h.toString(16)).slice(-6);
+}
+
+
 
 // "data":[
 //      {
 //         "timestamp":1553765124.19641,
-//         "hwaddr":"00:0b:57:be:54:0d",
+// "hwaddr":"00:0b:57:be:54:0d",
 //         "room_name":"Lippershey",
 //         "measurements":{
 //            "bapLevel":1149336846,

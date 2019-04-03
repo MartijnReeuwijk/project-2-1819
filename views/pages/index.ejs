@@ -1,27 +1,85 @@
 <%- include('../partials/header'); -%>
 
-  <body>
-    <%- include('../partials/mainnav'); -%>
-    <main>
-      <section class="roomHolder">
-          <% data.forEach(function(room){ %>
-        <div class="room borderSolid hoverShadow inlineFlex transition">
-          <div class="climateImage backgroundImage">
-            <img src="" alt="">
-          </div>
-          <div class="dataHolder flex">
-            <% button.forEach(function(button){ %>
-            <div class="dataIcon borderSolid inlineFlex hoverShadow borderRadius transition">
-              <p><%= button.voc %></p>
-            </div>
-            <% }) %>
+<body>
+  <%- include('../partials/mainnav'); -%>
+  <main>
+    <section class="filterHolder">
+      <h1>Zoek de correcten werk omgeving</h1>
 
-          </div>
+      <form class="filterForm" action="index.html" method="post">
+        <label for="temp">Temperature (Warm -> Koud)
+          <input id="temp" type="radio" name="filter" value="">
+        </label>
+
+        <label for="sound">Geluid (Veel -> Weinig)
+          <input id="sound" type="radio" name="filter" value="">
+        </label>
+
+        <label for="humidity">Lucht vochtigheid (vochtig -> droog)
+          <input id="humidity" type="radio" name="filter" value="">
+</label>
+      </form>
+
+    </section>
+
+    <section class="roomHolder">
+      <% data.forEach(function(rooms,index){ %>
+      <article class="room borderSolid hoverShadow inlineFlex transition <%= rooms.measurements.occupancy ? " vrij " : "bezet" %>">
+        <div class="dataTitle">
+          <h2><%= rooms.room_name %></h2>
+          <time><%= time %></time>
         </div>
-<% }) %>
-      </section>
+        <div class="climateImage backgroundImage">
+          <img src=<%if (rooms.measurements.temperature / 1000 < 21) { %>
+          "img/climate/iceberg.svg"
+          <% } else{ %>""
+          <% }%> >
+        </div>
+        <div class="dataHolder flex">
 
-    </main>
-  </body>
+          <!-- rooms.measurements.occupancy en de correcten class moet er bij  -->
+          <!-- item.statistical_murder_flag ? "death" : "alive" -->
+            <div class="textHolder flex">
+              <div class="dataTitlePusher">
+
+              </div>
+          <p>
+            Deze ruimte is:<span class="<%= rooms.measurements.occupancy ? " free" : "bad" %>">
+              <%= rooms.measurements.occupancy ? " Vrij" : "Bezet" %>
+          </p>
+
+          <p>
+            Deze ruimte is:<span class="<%= rooms.measurements.temperature / 1000 < 21 ? " koud" : "warm" %>">
+              <%= rooms.measurements.temperature / 1000 < 21 ? "koud" : "warm" %>
+          </p>
+
+
+
+          <p>
+            Luchvochtigheid is <span class="<%= rooms.measurements.humidity / 1000 < 60 || rooms.measurements.humidity / 1000 > 40 ? "bad" : "good" %>">
+
+          <%= rooms.measurements.humidity / 1000 < 60 || rooms.measurements.humidity / 1000 > 40 ? "niet ideaal" : "ideaal" %>
+          </p>
+
+          <p>
+            <%= rooms.measurements.co2  %>
+          </p>
+
+          <p>
+            <%= rooms.measurements.voc  %>
+          </p>
+
+
+<!-- Just if this element so it wont even be if you have sound -->
+          <div title="70 DB of meer: Storend bij telefoneren" class="sound backgroundImage backgroundImageContain <%= rooms.measurements.mic_level / 100 > 30 ? "vis" : "invis" %>">
+          </div>
+</div>
+        </div>
+      </article>
+      <% }) %>
+    </section>
+
+  </main>
+</body>
 
 <%- include('../partials/footer'); -%>
