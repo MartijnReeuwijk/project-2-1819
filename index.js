@@ -45,14 +45,18 @@ app.get('/', (req, res) => {
       const time = getTime()
       const filteredData = filterData(data)
 
-      if (response) {
+      if (response.status !== 200) {
         res.render("pages/index", {
-          title: "SADS",
+          title: "Room app",
           data: filteredData,
           time: time
         });
-      } else {
-        res.send(`<p>De server of API waar mijn data wordt verwerkt ligt er uit, check uw internet</p>`);
+      } else{
+        app.get("/Offline", (req, res) => {
+          res.render("pages/offline", {
+            title: "Offline"
+          })
+        })
       }
     }
   );
@@ -64,49 +68,9 @@ app.get('/', (req, res) => {
     });
  }
 
-
-
-
 function getTime() {
   const time = new Date()
   const hours = time.getHours();
   const mins = time.getMinutes();
   return hours + ":" + mins
 }
-
-
-
-function perc2color(perc) {
-  var r, g, b = 0;
-  if (perc < 50) {
-    r = 255;
-    g = Math.round(5.1 * perc);
-  } else {
-    g = 255;
-    r = Math.round(510 - 5.10 * perc);
-  }
-  var h = r * 0x10000 + g * 0x100 + b * 0x1;
-  // console.log('#' + ('000000' + h.toString(16)).slice(-6));
-  return '#' + ('000000' + h.toString(16)).slice(-6);
-}
-
-
-
-// "data":[
-//      {
-//         "timestamp":1553765124.19641,
-// "hwaddr":"00:0b:57:be:54:0d",
-//         "room_name":"Lippershey",
-//         "measurements":{
-//            "bapLevel":1149336846,
-//            "temperature":20691,
-//            "batt":100,
-//            "mic_level":2567,
-//            "ambient_light":12568,
-//            "humidity":21511,
-//            "co2":491,
-//            "occupancy":false,
-//            "uv_index":0,
-//            "voc":3328
-//         }
-//      },

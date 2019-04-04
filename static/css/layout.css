@@ -1,15 +1,19 @@
 @font-face {
-  font-family: "raleway", Arial, sans-serif;
+  font-family: "Brando";
+  src: url("../font/Brando-Sans-Text.otf") format("otf");
+  font-display: swap;
 }
 
 body {
   margin: 0px;
   color: black;
-  background-color: #e2e1e0;
-  font-family: "raleway", Arial, sans-serif;
+  background-color: #CBCAC9;
+  font-family: "Brando", Arial, sans-serif;
   font-style: normal;
 }
+
 .filterHolder{
+  padding: 10px;
   width: 100%;
   /* border-radius: 20px; */
   background-color: white;
@@ -52,9 +56,10 @@ padding: 5px;
 .room {
   overflow: hidden;
   width: calc(50% - 20px);
+  min-width: 350px;
   max-width: 500px;
   display: inline-flex;
-  margin: 10px 5px;
+  margin: 10px 5px 5px 2.5px;
   background-color: white;
   position: relative;
   opacity: 1;
@@ -116,28 +121,47 @@ padding: 5px;
 display: inline-flex;
 }
 .textHolder{
-  padding: 10px 20px;
+  padding: 10px;
 }
 .textHolder p {
 width: 100%;
 margin: 0px;
+height: 25px;
+padding: 2px;
+line-height: 25px;
 }
+
 .textHolder p span{
   margin: 0 5px;
 }
-.sound{
+.iconHolder{
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  right: 0px;
+}
+.sound, .co2{
+  opacity: .1;
   border: 1px solid black;
   width: 25px;
   height: 25px;
+  float: left;
   padding: 5px;
+  margin: 5px;
   background-color: white;
-  background-color: rgba(255,77,77, 0.1);
   background-size: 90%;
   background-image: url("../img/measurement/speaker.svg");
-  animation: pulse 3s infinite;
+
+}
+.sound:hover, .co2:hover{
+  opacity: .75;
+}
+.active{
+  opacity: 1;
+animation: pulse 3s infinite;
+background-color: rgba(255,77,77, 0.1);
+
+}
+.co2{
+    right: 50px;
 }
 .invis{
   display: none;
@@ -190,7 +214,7 @@ margin: 0px;
 }
 
 /* animations */
-
+/* Chains be bad */
 .room:nth-of-type(2) {
 	animation-delay: .25s;
 }
@@ -277,6 +301,21 @@ margin: 0px;
   color: #0080ff;
   animation: shake 1s ease-in 5;
 }
+.koud::after{
+  content: " ";
+  float: left;
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 0 2px;
+  border: 1px solid #0080ff;
+  background-image:url("../img/measurement/snow.svg");
+  filter: hue-rotate(#0080ff);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+}
 .koud:hover{
   animation: shake .5s ease-in infinite;
 }
@@ -287,7 +326,7 @@ margin: 0px;
   transform: translate3d(0, 0, 0);
 }
 .bezet{
-  opacity: .5;
+  opacity: .3;
    filter: grayscale(75%);
 }
 .bezet:hover{
@@ -297,7 +336,14 @@ margin: 0px;
 .luid{
 
 }
-/* .rustig:after{
-  content: '_';
-  background-image: url("../img/measurement/speaker.svg");
-} */
+.offline{
+  width: 500px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  margin: 0 auto;
+  line-height: 100px
+}

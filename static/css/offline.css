@@ -1,0 +1,36 @@
+main{
+  width: 100%;
+  background-image: url("../img/noise.png");
+  height: 100vh;
+  position: relative;
+  align-items: center;
+display: flex;
+justify-content: center;
+}
+.offlineHolder{
+  height: 200px;
+  width: 400px;
+  position: absolute;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+}
+.offlineHolder:hover{
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.24), 0 3px 5px rgba(0, 0, 0, 0.34);
+}
+.offlineHolder h1 {
+  font-size: 40px;
+line-height: 170px;
+width: 100%;
+}
+.offlineHolder p {
+  line-height: 30px;
+
+}
+.offlineHolder span{
+  color: red;
+}

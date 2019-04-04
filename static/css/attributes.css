@@ -31,6 +31,9 @@
 .backgroundImageContain{
     background-size: contain;
 }
+.good{
+  color: #3af947;
+}
 .bad{
   color: #f9473a;
 }

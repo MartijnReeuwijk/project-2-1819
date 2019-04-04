@@ -1,9 +1,9 @@
 {
   "name": "Room data",
-  "short_name": "SADS",
+  "short_name": "Room data",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
-  "display": "browser",
+  "display": "standalone",
   "Scope": "/",
   "start_url": "/",
   "icons": [

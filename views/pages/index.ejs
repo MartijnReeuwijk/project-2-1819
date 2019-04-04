@@ -1,4 +1,5 @@
 <%- include('../partials/header'); -%>
+<%- include('../partials/status'); -%>
 
 <body>
   <%- include('../partials/mainnav'); -%>
@@ -7,73 +8,82 @@
       <h1>Zoek de correcten werk omgeving</h1>
 
       <form class="filterForm" action="index.html" method="post">
+        <label for="occupied">Bezet (Ja -> Nee)
+          <input checked id="occupied" type="radio" name="filter" value="occupied">
+        </label>
         <label for="temp">Temperature (Warm -> Koud)
-          <input id="temp" type="radio" name="filter" value="">
+          <input id="temp" type="radio" name="filter" value="temp">
         </label>
 
         <label for="sound">Geluid (Veel -> Weinig)
-          <input id="sound" type="radio" name="filter" value="">
+          <input id="sound" type="radio" name="filter" value="sound">
         </label>
 
         <label for="humidity">Lucht vochtigheid (vochtig -> droog)
-          <input id="humidity" type="radio" name="filter" value="">
-</label>
+          <input id="humidity" type="radio" name="filter" value="humidity">
+        </label>
       </form>
 
     </section>
 
     <section class="roomHolder">
       <% data.forEach(function(rooms,index){ %>
-      <article class="room borderSolid hoverShadow inlineFlex transition <%= rooms.measurements.occupancy ? " vrij " : "bezet" %>">
+      <article class="room borderSolid hoverShadow inlineFlex transition <%= rooms.measurements.occupancy ? " vrij " : " bezet" %>">
         <div class="dataTitle">
-          <h2><%= rooms.room_name %></h2>
-          <time><%= time %></time>
+          <h2>
+            <%= rooms.room_name %>
+          </h2>
+          <time>
+            <%= time %></time>
         </div>
         <div class="climateImage backgroundImage">
-          <img src=<%if (rooms.measurements.temperature / 1000 < 21) { %>
+          <img alt="klimaat image" src=
+          <%if (rooms.measurements.temperature / 1000 < 21) { %>
           "img/climate/iceberg.svg"
-          <% } else{ %>""
-          <% }%> >
+          <% } else if (rooms.measurements.temperature / 1000 > 21 && rooms.measurements.humidity / 1000 >= 19) { %>
+            "img/climate/desert-1.svg"
+          <% } else {%>" "<% } %>  >
         </div>
+
         <div class="dataHolder flex">
 
           <!-- rooms.measurements.occupancy en de correcten class moet er bij  -->
           <!-- item.statistical_murder_flag ? "death" : "alive" -->
-            <div class="textHolder flex">
-              <div class="dataTitlePusher">
+          <div class="textHolder">
+            <div class="dataTitlePusher">
+<!-- Moet meer logica naar de server moven -->
+            </div>
+            <p>
+              Deze ruimte is:<span class="<%= rooms.measurements.occupancy ? " free" : "bad" %>">
+                <%= rooms.measurements.occupancy ? " Vrij" : "Bezet" %>
+            </p>
 
+            <p>
+              Deze ruimte is:<span class="<%= rooms.measurements.temperature / 1000 < 21 ? " koud" : "warm" %>">
+                <%= rooms.measurements.temperature / 1000 < 21 ? "koud" : "warm" %>
+            </p>
+
+
+
+            <p>
+              Luchvochtigheid is:<span class="<%= rooms.measurements.humidity / 1000 < 60 || rooms.measurements.humidity / 1000 > 40 ? " bad" : "good" %>">
+
+                <%= rooms.measurements.humidity / 1000 < 60 || rooms.measurements.humidity / 1000 > 40 ? "niet ideaal" : "ideaal" %>
+            </p>
+
+            <p>
+              lucht kwaliteid is:<span class="<%= rooms.measurements.co2 > 1200 ? " bad" : "good" %>">
+                <%= rooms.measurements.co2 > 1200 ? "benauwde" : "vers" %>
+            </p>
+
+            <section class="iconHolder">
+              <div title="Er is teveel Co2 dit is een “benauwde atmosfeer” " class="co2 backgroundImage transition backgroundImageContain <%= rooms.measurements.co2 > 1200 ? "active" : "" %>">
               </div>
-          <p>
-            Deze ruimte is:<span class="<%= rooms.measurements.occupancy ? " free" : "bad" %>">
-              <%= rooms.measurements.occupancy ? " Vrij" : "Bezet" %>
-          </p>
+              <div title="70 DB of meer: Storend bij telefoneren" class="sound backgroundImage transition backgroundImageContain <%= rooms.measurements.mic_level / 100 > 30 ? " active" : "" %>">
+              </div>
+            </section>
 
-          <p>
-            Deze ruimte is:<span class="<%= rooms.measurements.temperature / 1000 < 21 ? " koud" : "warm" %>">
-              <%= rooms.measurements.temperature / 1000 < 21 ? "koud" : "warm" %>
-          </p>
-
-
-
-          <p>
-            Luchvochtigheid is <span class="<%= rooms.measurements.humidity / 1000 < 60 || rooms.measurements.humidity / 1000 > 40 ? "bad" : "good" %>">
-
-          <%= rooms.measurements.humidity / 1000 < 60 || rooms.measurements.humidity / 1000 > 40 ? "niet ideaal" : "ideaal" %>
-          </p>
-
-          <p>
-            <%= rooms.measurements.co2  %>
-          </p>
-
-          <p>
-            <%= rooms.measurements.voc  %>
-          </p>
-
-
-<!-- Just if this element so it wont even be if you have sound -->
-          <div title="70 DB of meer: Storend bij telefoneren" class="sound backgroundImage backgroundImageContain <%= rooms.measurements.mic_level / 100 > 30 ? "vis" : "invis" %>">
           </div>
-</div>
         </div>
       </article>
       <% }) %>
