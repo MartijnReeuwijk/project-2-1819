@@ -19,7 +19,7 @@
           <input id="sound" type="radio" name="filter" value="sound">
         </label>
 
-        <label for="humidity">Lucht vochtigheid (vochtig -> droog)
+        <label for="humidity">Luchvochtigheid (vochtig -> droog)
           <input id="humidity" type="radio" name="filter" value="humidity">
         </label>
       </form>
@@ -72,7 +72,7 @@
             </p>
 
             <p>
-              lucht kwaliteid is:<span class="<%= rooms.measurements.co2 > 1200 ? " bad" : "good" %>">
+              luchtkwaliteit is:<span class="<%= rooms.measurements.co2 > 1200 ? " bad" : "good" %>">
                 <%= rooms.measurements.co2 > 1200 ? "benauwde" : "vers" %>
             </p>
 
